@@ -15,9 +15,10 @@ const Tabs = (topics) => {
   //   <div class="tab">technology</div>
   // </div>
   //
-  const t = [topics];
+  
   const topicsDiv = document.createElement('div');
   topicsDiv.classList.add('topics');
+  const t = [topics];
   t.forEach(element => {
     const tabDiv = document.createElement('div');
     tabDiv.classList.add('tab');
@@ -36,26 +37,31 @@ const tabsAppender = (selector) => {
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
   
-  const data = [];
+  
+  let data = [];
   axios.get(`http://localhost:5000/api/topics`)
   .then(r => {
    //console.log('response:', r.data.topics);
    r.data.topics.forEach(e =>{
-     
-    // console.log('elements', e);
     data.push(e);
-   })
     
+   });
+   
+    
+  
   }).catch(err => {
     console.error(err);
   })
-  const parent = document.querySelector(selector)
-  console.log(`data: `,data);
-  //console.log(`parent: `,parent);
-  data.forEach(element => {
-    console.log(element);
-    parent.appendChild(Tabs(element));
+  
+  console.log(`data: `,data); //shows length of 5
+  
+  console.log('Data Length:', data.length); //shows length of 0
+  const grabSelector = document.querySelector(selector);
+  data.forEach(e =>{ //I believe this thinks length is 0
+    grabSelector.appendChild(Tabs(e));
   });
+  
+  
   
 }
 
