@@ -17,6 +17,12 @@ const Card = (article) => {
   //   </div>
   // </div>
   //
+  const cardDiv = document.createElement('div');
+  const headlineDiv = document.createElement('div');
+  const authorDiv = document.createElement('div');
+  const imgContainer = document.createElement('div');
+  const imgAuthor = document.createElement('img');
+  imgAuthor.src=`${article.authorPhoto}`;
 }
 
 const cardAppender = (selector) => {
